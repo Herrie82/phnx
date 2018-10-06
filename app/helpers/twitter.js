@@ -20,13 +20,13 @@ var TwitterAPI = function(user, stageController) {
 	this.endpoints = {
 		home:				'statuses/home_timeline',
 		mentions:			'statuses/mentions_timeline',
-		messages:			'direct_messages',
-		sentMessages:		'direct_messages/sent',
+		messages:			'direct_messages/events/list',
+		sentMessages:		'direct_messages/events/list',
 		favorite:			'favorites/create',
 		unfavorite:			'favorites/destroy',
 		retweet:			'statuses/retweet',
 		destroy:			'statuses/destroy',
-		destroyDM:			'direct_messages/destroy',
+		destroyDM:			'direct_messages/events/destroy',
 		statusShow:			'statuses/show',
 		statusUpdate:		'statuses/update',
 		statusesLookup:		'statuses/lookup',
@@ -45,7 +45,7 @@ var TwitterAPI = function(user, stageController) {
 		saveSearch:			'saved_searches/create',
 		deleteSearch:		'saved_searches/destroy',
 		searchTweets:		'search/tweets',
-		newDM:				'direct_messages/new',
+		newDM:				'direct_messages/events/new',
 		lists:				'lists/list',
 		listSubscriptions:	'lists/subscriptions',
 		listStatuses:		'lists/statuses',
@@ -152,7 +152,7 @@ TwitterAPI.prototype = {
 		this.sign('POST', this.url(this.endpoints.newDM), callback, args, {});
 	},
 	destroyDM: function(args, callback) {
-		this.sign('POST', this.url(this.endpoints.destroyDM), callback, args, {}); 
+		this.sign('DELETE', this.url(this.endpoints.destroyDM), callback, args, {}); 
 	},
 	userLists: function(args, callback) {
 		this.sign('GET', this.url(this.endpoints.lists), callback, args, {});
